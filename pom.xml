@@ -32,6 +32,30 @@
       <plugins>
         <!-- clean lifecycle, see https://maven.apache.org/ref/current/maven-core/lifecycles.html#clean_Lifecycle -->
         <plugin>
+		<groupId>org.jacoco</groupId>
+        <artifactId>org.jacoco.build</artifactId>
+        <version>0.8.5</version>
+		<configuration>
+		<destfile>${basedir}/target/coverage-reports/jacoco-unit.exec</destfile>
+		<datafile>${basedir}/target/coverage-reports/jacoco-unit.exec</datafile>
+		</configuration>
+		<executions>
+		<execution>
+		<id>jacoco-initialize</id>
+		<goals>
+		<goal>prepare-agent</goal>
+		</goals>
+		</execution>
+		<execution>
+		<id>jacoco-site</id>
+		<phase>package</phase>
+		<goals>
+		<goal>report</goal>
+		</goals>
+		</execution>
+		</executions>
+	    </plugin>
+		<plugin>
           <artifactId>maven-clean-plugin</artifactId>
           <version>3.1.0</version>
         </plugin>
